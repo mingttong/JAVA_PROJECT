@@ -1,3 +1,4 @@
-sbzxm.txt
-.gitignore
 .settings
+.idea
+.classpath
+.project
