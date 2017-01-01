@@ -25,6 +25,11 @@ public class MemberVO { //用户的VO类，包括用户名各密码
 		return "MemberVO [name=" + name + ", pwd=" + pwd + "]";
 	}
 	
+	public static void main(String[] args) {
+		MemberVO vo = new MemberVO("haha", "111");
+		System.out.println("hell");
+	}
+	
 	
 		
 }

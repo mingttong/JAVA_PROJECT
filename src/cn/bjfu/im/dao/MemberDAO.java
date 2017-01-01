@@ -139,16 +139,9 @@ public class MemberDAO extends BaseDAO {
 		}
 		return mid;
 	}
-	// public static void main(String[] args){//test
-	// StudentVO vo = new StudentVO(2, "abcdef", 20);
-	// StudentDAO sDAO=new StudentDAO();
-	// boolean bool=sDAO.updateAge(vo);
-	// if(bool==true)
-	// {
-	// System.out.println("OK");//≤‚ ‘
-	// }else {
-	// System.out.println("NO");
-	// }
+	 public static void main(String[] args){//test
+	 
+	 }
 
 	// RegisterDAO sDAO=new RegisterDAO();
 	// RegisterVO vo = sDAO.findByName("zxm");

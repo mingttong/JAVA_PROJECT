@@ -29,7 +29,7 @@ public class OrderVO {// ∂©µ•VO¿‡
 		this.mid = mid;
 	}
 
-	public int getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
