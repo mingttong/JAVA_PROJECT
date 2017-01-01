@@ -1,11 +1,11 @@
-package cn.bjfu.im;
+package cn.bjfu.im.vo;
 
 public class OrderDetailVO {
 	private int oid;
 	private int gid;
 	private int amount;
 
-	OrderDetailVO(int t_oid, int t_gid, int t_amount) {
+	public OrderDetailVO(int t_oid, int t_gid, int t_amount) {
 		this.oid = t_oid;
 		this.gid = t_gid;
 		this.amount = t_amount;

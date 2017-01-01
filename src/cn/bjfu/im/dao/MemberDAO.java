@@ -1,7 +1,10 @@
-package cn.bjfu.im;
+package cn.bjfu.im.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import cn.bjfu.im.vo.MemberVO;
+
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 

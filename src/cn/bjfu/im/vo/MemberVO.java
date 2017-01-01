@@ -1,4 +1,4 @@
-package cn.bjfu.im;
+package cn.bjfu.im.vo;
 
 public class MemberVO { //用户的VO类，包括用户名各密码
 	private String name;

@@ -1,4 +1,4 @@
-package cn.bjfu.im;
+package cn.bjfu.im.vo;
 
 import java.sql.Timestamp;
 
@@ -8,13 +8,13 @@ public class OrderVO {// ∂©µ•VO¿‡
 	private String address;
 	private Timestamp timestamp;
 
-	OrderVO(int t_mid, int t_total, String t_address) {
+	public OrderVO(int t_mid, int t_total, String t_address) {
 		this.mid = t_mid;
 		this.total = t_total;
 		this.address = t_address;
 	}
 
-	OrderVO(int t_mid, double t_total, String t_address, Timestamp t_timestamp) {
+	public OrderVO(int t_mid, double t_total, String t_address, Timestamp t_timestamp) {
 		this.mid = t_mid;
 		this.total = t_total;
 		this.address = t_address;

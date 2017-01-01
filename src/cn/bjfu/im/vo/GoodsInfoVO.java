@@ -1,11 +1,11 @@
-package cn.bjfu.im;
+package cn.bjfu.im.vo;
 
 public class GoodsInfoVO {//商品信息VO类
 	private String good;
 	private double price;
 	private String introduction;
 	private String pictureURL;
-	GoodsInfoVO(String t_good, double t_price,String t_introduction,
+	public GoodsInfoVO(String t_good, double t_price,String t_introduction,
 			String t_pictureURL){//构造方法
 		this.good=t_good;
 		this.price=t_price;

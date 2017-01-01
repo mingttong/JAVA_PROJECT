@@ -1,4 +1,4 @@
-package cn.bjfu.im;
+package cn.bjfu.im.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
