@@ -5,30 +5,30 @@ import java.sql.SQLException;
 
 import cn.bjfu.im.vo.MemberVO;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 //import cn.bjfu.im.MemberVO;
 
 public class MemberDAO extends BaseDAO {
 
-	public boolean isNoneByName(String name) {// ×¢²áÇ°ÅĞ¶ÏÊÇ·ñÓĞÖØ¸´µÇÂ¼ÃûµÄ·½·¨
+	public boolean isNoneByName(String name) {// æ³¨å†Œå‰åˆ¤æ–­æ˜¯å¦æœ‰é‡å¤ç™»å½•åçš„æ–¹æ³•
 		Connection conn = open();
 		boolean f = false;
 		String sql = "select count(*) as count from member_info where name =?";
 		try {
-			PreparedStatement ps = (PreparedStatement) conn
+			PreparedStatement ps = conn
 					.prepareStatement(sql);
 			ps.setString(1, name);
-			ResultSet rs = (ResultSet) ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			int count = 0;
 			while (rs.next()) {
 				count = rs.getInt("count");
 			}
 			if (count == 0)
-				f = true;// Ã»ÓĞÕâ¸öÃû×ÖµÄÓÃ»§£¬·µ»Øtrue
+				f = true;// æ²¡æœ‰è¿™ä¸ªåå­—çš„ç”¨æˆ·ï¼Œè¿”å›true
 			else
-				f = false;// ÓĞÕâ¸öÃû×ÖµÄÓÃ»§£¬·µ»Øfalse
+				f = false;// æœ‰è¿™ä¸ªåå­—çš„ç”¨æˆ·ï¼Œè¿”å›false
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -42,23 +42,23 @@ public class MemberDAO extends BaseDAO {
 		return f;
 	}
 
-	public boolean add(MemberVO vo) {// ×¢²áÓÃ»§µÄ·½·¨
+	public boolean add(MemberVO vo) {// æ³¨å†Œç”¨æˆ·çš„æ–¹æ³•
 		Connection conn = open();
 		boolean f = false;
 		try {
-			// ´øÎÊºÅµÄsqlÓï¾ä
+			// å¸¦é—®å·çš„sqlè¯­å¥
 			String sql = "insert into member_info (name,pwd) values (?,?)";
-			// 3.»ñÈ¡PreparedStatement¶ÔÏó£¬ÓÃÒÔÖ´ĞĞsqlÓï¾ä
-			PreparedStatement ps = (PreparedStatement) conn
+			// 3.è·å–PreparedStatementå¯¹è±¡ï¼Œç”¨ä»¥æ‰§è¡Œsqlè¯­å¥
+			PreparedStatement ps = conn
 					.prepareStatement(sql);
-			// sqlµÄ?Ìæ»»Îª¾ßÌåÖµ, setInt, setString,ĞòºÅ´Ó1¿ªÊ¼
+			// sqlçš„?æ›¿æ¢ä¸ºå…·ä½“å€¼, setInt, setString,åºå·ä»1å¼€å§‹
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getPwd());
-			// 4.Í¨¹ıPreparedStatement¶ÔÏóÖ´ĞĞsqlÓï¾ä
-			int count = ps.executeUpdate();// Ö´ĞĞsql£¬
-			// ·µ»Ø£ºµ½Êı¾İ¿âÖĞÓĞ¼¸Ìõ¼ÇÂ¼ÊÜµ½ÁËÓ°Ïì
+			// 4.é€šè¿‡PreparedStatementå¯¹è±¡æ‰§è¡Œsqlè¯­å¥
+			int count = ps.executeUpdate();// æ‰§è¡Œsqlï¼Œ
+			// è¿”å›ï¼šåˆ°æ•°æ®åº“ä¸­æœ‰å‡ æ¡è®°å½•å—åˆ°äº†å½±å“
 			if (count > 0) {
-				f = true;// Ìí¼Ó³É¹¦·µ»Øtrue
+				f = true;// æ·»åŠ æˆåŠŸè¿”å›true
 			} else {
 				f = false;
 			}
@@ -71,24 +71,24 @@ public class MemberDAO extends BaseDAO {
 		return f;
 	}
 
-	public boolean updatePwd(MemberVO vo) {// ¸üĞÂÃÜÂëµÄ·½·¨
+	public boolean updatePwd(MemberVO vo) {// æ›´æ–°å¯†ç çš„æ–¹æ³•
 
 		Connection conn = this.open();
 		boolean f = false;
-		// ´øÎÊºÅµÄsqlÓï¾ä
+		// å¸¦é—®å·çš„sqlè¯­å¥
 		String sql = "update member_info set pwd=?  where name=?";
-		// 3.»ñÈ¡PreparedStatement¶ÔÏó£¬ÓÃÒÔÖ´ĞĞsqlÓï¾ä
+		// 3.è·å–PreparedStatementå¯¹è±¡ï¼Œç”¨ä»¥æ‰§è¡Œsqlè¯­å¥
 		try {
-			PreparedStatement ps = (PreparedStatement) conn
+			PreparedStatement ps = conn
 					.prepareStatement(sql);
-			// sqlÖØµÄ?Ìæ»»Îª¾ßÌåÖµ, setInt, setString,ĞòºÅ´Ó1¿ªÊ¼
+			// sqlé‡çš„?æ›¿æ¢ä¸ºå…·ä½“å€¼, setInt, setString,åºå·ä»1å¼€å§‹
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getPwd());
-			// 4.Í¨¹ıPreparedStatement¶ÔÏóÖ´ĞĞsqlÓï¾ä
-			int count = ps.executeUpdate();// Ö´ĞĞsql£¬
-			// ·µ»Ø£ºµ½Êı¾İ¿âÖĞÓĞ¼¸Ìõ¼ÇÂ¼ÊÜµ½ÁËÓ°Ïì
+			// 4.é€šè¿‡PreparedStatementå¯¹è±¡æ‰§è¡Œsqlè¯­å¥
+			int count = ps.executeUpdate();// æ‰§è¡Œsqlï¼Œ
+			// è¿”å›ï¼šåˆ°æ•°æ®åº“ä¸­æœ‰å‡ æ¡è®°å½•å—åˆ°äº†å½±å“
 			if (count > 0)
-				f = true;// ¸üĞÂ³É¹¦·µ»Øtrue
+				f = true;// æ›´æ–°æˆåŠŸè¿”å›true
 			else
 				f = false;
 		} catch (SQLException e) {
@@ -100,29 +100,29 @@ public class MemberDAO extends BaseDAO {
 		return f;
 	}
 
-	public int findMember(MemberVO vo) {// µÇÂ¼Ê±Ê¹ÓÃµÄÅĞ¶Ï·½·¨//ÕıÈ·Ê±·µ»Ømid£¬´íÎó·µ»Ø-1
+	public int findMember(MemberVO vo) {// ç™»å½•æ—¶ä½¿ç”¨çš„åˆ¤æ–­æ–¹æ³•//æ­£ç¡®æ—¶è¿”å›midï¼Œé”™è¯¯è¿”å›-1
 		Connection conn = open();
 		int mid = 0;
 		String sql = "select count(*) as count from member_info where name =? and pwd =?";
 		try {
-			PreparedStatement ps = (PreparedStatement) conn
+			PreparedStatement ps = conn
 					.prepareStatement(sql);
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getPwd());
-			ResultSet rs = (ResultSet) ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			int count = 0;
 			while (rs.next()) {
 				count = rs.getInt("count");
 			}
 			if (count == 0) {
-				mid = -1;// ÓÃ»§Ãû»òÃÜÂë²»ÕıÈ·
-			} else {// ÕıÈ·
+				mid = -1;// ç”¨æˆ·åæˆ–å¯†ç ä¸æ­£ç¡®
+			} else {// æ­£ç¡®
 				String sql2 = "select mid from member_info where name =? and pwd =?";
-				PreparedStatement ps2 = (PreparedStatement) conn
+				PreparedStatement ps2 = conn
 						.prepareStatement(sql2);
 				ps2.setString(1, vo.getName());
 				ps2.setString(2, vo.getPwd());
-				ResultSet rs2 = (ResultSet) ps2.executeQuery();
+				ResultSet rs2 = ps2.executeQuery();
 				while (rs2.next()) {
 					mid = rs2.getInt("mid");
 				}
